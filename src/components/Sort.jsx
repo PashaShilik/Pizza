@@ -11,12 +11,12 @@ function Sort () {
 
    /*Хук useState для переключателя*/
     const list = [
-    {name:'Популярности(desc)', sort: 'rating'},
-    {name:'Популярности(asc)', sort: '-rating'},
-    {name:'Цене(desc)', sort: 'price'},
-    {name:'Цене(asc)', sort: '-price'},
-    {name:'Алфавиту(desc)', sort: 'title'},
-    {name:'Алфавиту(asc)', sort: '-title'},
+    {name:'Популярности(desc)', sortProperty: 'rating'},
+    {name:'Популярности(asc)', sortProperty: '-rating'},
+    {name:'Цене(desc)', sortProperty: 'price'},
+    {name:'Цене(asc)', sortProperty: '-price'},
+    {name:'Алфавиту(desc)', sortProperty: 'title'},
+    {name:'Алфавиту(asc)', sortProperty: '-title'},
     ];/* Массив для списка */
    
  
@@ -42,7 +42,7 @@ function Sort () {
                            <li   
                            key={i}
                            onClick={()=>onClickListItem(obj)}
-                           className={sort.sort == obj.sort ? 'active' : ''}>
+                           className={sort.sortProperty == obj.sortProperty ? 'active' : ''}>
                             {obj.name}
                            </li>/*Задаем состояние списку, так чтобы при клике оно оставалось*/
                            )}
