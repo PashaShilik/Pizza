@@ -11,9 +11,12 @@ function Sort () {
 
    /*Хук useState для переключателя*/
     const list = [
-    {name:'Популярности', sort: 'rating'},
-    {name:'Цене', sort: 'price'},
-    {name:'Алфавиту', sort: 'title'},
+    {name:'Популярности(desc)', sort: 'rating'},
+    {name:'Популярности(asc)', sort: '-rating'},
+    {name:'Цене(desc)', sort: 'price'},
+    {name:'Цене(asc)', sort: '-price'},
+    {name:'Алфавиту(desc)', sort: 'title'},
+    {name:'Алфавиту(asc)', sort: '-title'},
     ];/* Массив для списка */
    
  

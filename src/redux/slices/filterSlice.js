@@ -13,10 +13,11 @@ const filterSlice = createSlice ({/*Создаю логику для filterSlice
     initialState,/*Первоначальное состояние Slice*/
     reducers: { /*Передаю действия (action) для этого Slise*/
       setCategoryId(state, action) {/*Создал первый метод для filterSlice*/
-        state.categoryId = action.payload
+        state.categoryId = action.payload;
       },   
       setSort(state, action) {
-        state.sort = action.payload
+        console.log(action);
+        state.sort = action.payload;
       }
     }
 });
