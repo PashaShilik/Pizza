@@ -1,0 +1,22 @@
+.star_wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.star_list{
+    display: flex;
+    list-style-type: none;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+.star_form{
+    color: grey;
+}
+
+.star_rating {
+color: rgb(235, 235, 6);
+}
+
