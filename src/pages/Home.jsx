@@ -35,8 +35,12 @@ const Home = () => {
     React.useEffect(() => { /* Хук для передачи запроса с Backend */
       setIsLoading(true); 
 
+      const sortBy = sortType.replace('-', '');
+      const order = sortType.includes('-') ? 'asc' : 'desc';
+      
+
         axios.get(
-          `https://6437ab88894c9029e8c2d9a7.mockapi.io/items?page=${currentPage}&limit=8&${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType}&order=desc`
+          `https://6437ab88894c9029e8c2d9a7.mockapi.io/items?page=${currentPage}&limit=8&${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortBy}&order=${order}`
           )
           .then((res) => {
             setItems(res.data);
