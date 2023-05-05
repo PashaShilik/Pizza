@@ -37,12 +37,12 @@ function PizzaBlocks ({id,title, price, imageUrl, rating, ratingArr, sizes, type
                 <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    {types.map((types) => {
+                    {types?.map((types) => {
                         return  <li key={types} onClick={() => setActiveType(types)} className={activeType == types ? 'active' : ''}>{typeNames[types]}</li>
                     })}{/*Достал размеры пиццы из массива с помощью метода map*/}
                 </ul>
                 <ul>
-                    {sizes.map((size, i) => {
+                    {sizes?.map((size, i) => {
                         return  <li key={size} onClick={() => setActiveSize(i)} className={activeSize == i ? 'active' : ''}>{size} см.</li>
                     })}{/*Достал размеры пиццы из массива с помощью метода map*/}
                 </ul>

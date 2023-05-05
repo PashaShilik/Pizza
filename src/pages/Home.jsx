@@ -14,6 +14,9 @@ import Pagination from "../components/Pagination/Pagination";
 
 import { AppContext } from "../App";
 
+import styled from "@emotion/styled";
+import Slider from "react-slick";
+
 const Home = () => {
     const dispatch = useDispatch ();/*Вшиваем метод redux DISPATCH*/
 
@@ -24,6 +27,26 @@ const Home = () => {
 
     const [items, setItems] = React.useState([]);
     const [currentPage, setcurrentPage] = React.useState(1);
+
+
+    const [viewSliderCount, setViewSliderCount] = React.useState(localStorage.getItem("sliderCount") ?? 3);
+    const [count, setCount] = React.useState();
+
+    const handleChangeViewSliderCount = (value) => {
+
+      setViewSliderCount(value);
+    }
+
+
+    const handleSetCount = () => {
+      localStorage.setItem("sliderCount", viewSliderCount)
+      setCount(viewSliderCount);
+
+      setTimeout(() => {
+        window.location.reload();
+
+      }, 500)
+    }
    
 
     const onChangeCategory = (id) => {
@@ -40,7 +63,7 @@ const Home = () => {
       
 
         axios.get(
-          `https://6437ab88894c9029e8c2d9a7.mockapi.io/items?page=${currentPage}&limit=8&${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortBy}&order=${order}`
+          `https://6437ab88894c9029e8c2d9a7.mockapi.io/items?page=${currentPage}&limit=10&${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortBy}&order=${order}`
           )
           .then((res) => {
             setItems(res.data);
@@ -54,9 +77,23 @@ const Home = () => {
         } 
           return false;
         })
-      .map((obj) => <PizzaBlocks key={obj.id} {...obj}/>);
-      const sceletons = [...new Array(4)].map((_, index) => <Skeleton key={index}/>);
+      
+       ?.map((obj) => <PizzaBlocks key={obj.id} {...obj}/>);
+      const sceletons = [...new Array(4)].map((_, index) => <Skeleton key={index}/>); 
 
+
+      let options = {
+        dots: false,
+        infinite: true,
+        speed:1500,
+        autoplaySpeed:1500,
+        slidesToShow: Number(localStorage.getItem("sliderCount")),
+        autoplay:true,
+        slidesToScroll:1,
+        arrows: false,
+      };
+
+console.log(options);
   
     return (
         <>
@@ -65,13 +102,29 @@ const Home = () => {
                 <Sort/>
             </div>
                 <h2 className="content__title">Все пиццы</h2>
+                
             <div className='content__items'>
-                {isloading ? sceletons : pizzas} {/* Рендер скелетона и пицц при загрузке*/}
+              <SliderWrapper>
+                  <Slider {...options}>
+                   {isloading ? sceletons : pizzas} {/* Рендер скелетона и пицц при загрузке*/}
+          
+                  </Slider>
+                    <div className="slider_input">
+                      <input value={viewSliderCount} onChange={(e) => handleChangeViewSliderCount(e.target.value)}  className='input_slide' maxlength="1" placeholder="Cлайды..." />  
+                      <input  disabled={Number(viewSliderCount) > 4 || Number(viewSliderCount) < 1 } onClick={handleSetCount} className='input_submit' type="button" value="Отправить"/>
+                    </div>
+              </SliderWrapper>
             </div> 
-            <Pagination countElements={2} onChangePage = {(number) => setcurrentPage(number)}/>
+        {/*     <Pagination countElements={2} onChangePage = {(number) => setcurrentPage(number)}/> */}
         </>
     )
     
 }
 
 export default Home;
+
+const SliderWrapper = styled("div")`
+
+`;
+
+

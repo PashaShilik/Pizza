@@ -1,10 +1,17 @@
 @import '../variables';
 
-.pizza-block {
-  width: 280px;
+.pizza-block {/* + */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 335x;
+  height: 650px;
   text-align: center;
-  margin-bottom: 65px;
   transition: all 0.2s ease-in-out;
+  margin-left: 20px;
+  background: #ffffff;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.03);
@@ -16,7 +23,8 @@
   }
 
   &__image {
-    width: 260px;
+    border-radius: 10px;/* + */
+    width: 292px;/* + */
   }
 
   &__title {
@@ -24,6 +32,7 @@
     font-weight: 900;
     letter-spacing: 1%;
     margin-bottom: 20px;
+    margin-top: 0;/* + */
   }
 
   &__selector {
@@ -32,6 +41,7 @@
     border-radius: 10px;
     flex-direction: column;
     padding: 6px;
+    width: 253px;
 
     ul {
       display: flex;
@@ -63,8 +73,9 @@
   &__bottom {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: space-evenly;/* + */
+    margin-top: 10px;/* + */
+    width: 320px;
   }
 
   &__price {
